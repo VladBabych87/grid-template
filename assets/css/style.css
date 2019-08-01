@@ -463,14 +463,14 @@ template {
 /* sm */
 /* xs */
 /* xx */
-.header-menu__container, .header-content__container, .about__container, .form__container {
+.header-menu__container, .header-content__container, .about__container, .form__container, .posts__container {
   max-width: 1340px;
   margin: auto;
   padding-right: 20px;
   padding-left: 20px;
 }
 
-.about h2 {
+.about h2, .posts h2 {
   margin-top: 0;
 }
 
@@ -970,11 +970,119 @@ input:focus {
   color: #8c9bab;
 }
 
+.posts__grid {
+  display: grid;
+  padding-bottom: 20px;
+  grid-gap: 20px;
+}
+
+.post-item {
+  -webkit-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+  background-color: #f2f2f2;
+}
+
+.post-item:hover {
+  background-color: #d8d8d8;
+}
+
+.post-item:hover .post-item__img img {
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.post-item:hover h3 {
+  color: #2d3651;
+}
+
+.post-item:hover p {
+  color: #2d3651;
+}
+
+.post-item__link {
+  display: grid;
+  overflow: hidden;
+  height: 100%;
+  grid-template-rows: 300px 1fr;
+}
+
+.post-item__img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  background-color: #2d3651;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.post-item__img img {
+  width: 100%;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  -o-transition: transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.post-item__caption {
+  display: grid;
+  padding: 20px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.post-item__caption h3 {
+  -webkit-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  transition: color 0.5s;
+  text-align: center;
+  font-family: "Roboto Slab", serif;
+}
+
+.post-item__caption p {
+  -webkit-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  transition: color 0.5s;
+  text-align: center;
+}
+
+.post-item:nth-of-type(1) {
+  grid-area: p1;
+}
+
+.post-item:nth-of-type(2) {
+  grid-area: p2;
+}
+
+.post-item:nth-of-type(3) {
+  grid-area: p3;
+}
+
+.post-item:nth-of-type(4) {
+  grid-area: p4;
+}
+
+.post-item:nth-of-type(5) {
+  grid-area: p5;
+}
+
+.post-item:nth-of-type(6) {
+  grid-area: p6;
+}
+
 @media (min-width: 576px) {
-  .skills__button .btn-accent {
+  .skills__button .btn-accent, .posts__button .btn-accent {
     min-width: 350px;
   }
-  .skills__button {
+  .skills__button, .posts__button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1012,7 +1120,7 @@ input:focus {
 }
 
 @media (min-width: 992px) {
-  .about {
+  .about, .posts {
     padding-top: 100px;
     padding-bottom: 100px;
   }
@@ -1050,6 +1158,10 @@ input:focus {
   .form__container {
     grid-template-columns: repeat(3, 1fr);
   }
+  .posts__grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "p1 p1 p2 p3" "p4 p5 p6 p6";
+  }
 }
 
 @media (max-width: 991.8px) {
@@ -1059,7 +1171,7 @@ input:focus {
 }
 
 @media (max-width: 991.8px) and (min-width: 768px) {
-  .about {
+  .about, .posts {
     padding-top: 80px;
     padding-bottom: 80px;
   }
@@ -1096,10 +1208,14 @@ input:focus {
   .form__container {
     grid-template-columns: repeat(3, 1fr);
   }
+  .posts__grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "p1 p1 p2" "p3 p4 p4" "p5 p5 p6";
+  }
 }
 
 @media (max-width: 767.8px) {
-  .about {
+  .about, .posts {
     padding-top: 60px;
     padding-bottom: 60px;
   }
@@ -1159,6 +1275,10 @@ input:focus {
   .form-item:nth-of-type(1) {
     grid-column: 1 / span 2;
   }
+  .posts__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "p1 p2" "p3 p4" "p5 p6";
+  }
 }
 
 @media (max-height: 690px) {
@@ -1168,7 +1288,7 @@ input:focus {
 }
 
 @media (max-width: 575.8px) {
-  .skills__button .btn-accent {
+  .skills__button .btn-accent, .posts__button .btn-accent {
     width: 100%;
   }
   h2 {
@@ -1210,5 +1330,9 @@ input:focus {
   }
   .about__content p:first-of-type::after {
     display: none;
+  }
+  .posts__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "p1" "p2" "p3" "p4" "p5" "p6";
   }
 }
